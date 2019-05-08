@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище DBSettingsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Main">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Alphabet" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Sensitivity" Type="bit" Nullable="false" />
+          <Property Name="Reflector" Type="nvarchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "C:\USERS\NIKOR\ONEDRIVE\PROJ\ENIGMA_ALL\ENIGMA_V3\ENIGMA_V2\DBSETTINGS.MDF.dbo.Plugboard" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Plugboard">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Couple" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Couple" Type="nchar" MaxLength="2" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "C:\USERS\NIKOR\ONEDRIVE\PROJ\ENIGMA_ALL\ENIGMA_V3\ENIGMA_V2\DBSETTINGS.MDF.dbo.Rotors" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="Rotors">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Rotor" />
+            <PropertyRef Name="Position" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Rotor" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Position" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Plugboard__Name__4F47C5E3">
+          <End Role="Main" Type="Self.Main" Multiplicity="1" />
+          <End Role="Plugboard" Type="Self.Plugboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Plugboard">
+              <PropertyRef Name="Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rotors__Name__503BEA1C">
+          <End Role="Main" Type="Self.Main" Multiplicity="1" />
+          <End Role="Rotors" Type="Self.Rotors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Rotors">
+              <PropertyRef Name="Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище DBSettingsModelContainer">
+          <EntitySet Name="Main" EntityType="Self.Main" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plugboard" EntityType="Self.Plugboard" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Plugboard].[Name] AS [Name], 
+[Plugboard].[Couple] AS [Couple]
+FROM [dbo].[Plugboard] AS [Plugboard]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Rotors" EntityType="Self.Rotors" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[Rotors].[Name] AS [Name], 
+[Rotors].[Rotor] AS [Rotor], 
+[Rotors].[Position] AS [Position]
+FROM [dbo].[Rotors] AS [Rotors]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Plugboard__Name__4F47C5E3" Association="Self.FK__Plugboard__Name__4F47C5E3">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="Plugboard" EntitySet="Plugboard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rotors__Name__503BEA1C" Association="Self.FK__Rotors__Name__503BEA1C">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="Rotors" EntitySet="Rotors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DBSettingsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Main">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Alphabet" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sensitivity" Type="Boolean" Nullable="false" />
+          <Property Name="Reflector" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Plugboard" Relationship="Self.FK__Plugboard__Name__4F47C5E3" FromRole="Main" ToRole="Plugboard" />
+          <NavigationProperty Name="Rotors" Relationship="Self.FK__Rotors__Name__503BEA1C" FromRole="Main" ToRole="Rotors" />
+        </EntityType>
+        <EntityType Name="Plugboard">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Couple" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Couple" Type="String" MaxLength="2" FixedLength="true" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Main" Relationship="Self.FK__Plugboard__Name__4F47C5E3" FromRole="Plugboard" ToRole="Main" />
+        </EntityType>
+        <EntityType Name="Rotors">
+          <Key>
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Rotor" />
+            <PropertyRef Name="Position" />
+          </Key>
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rotor" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Position" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Main" Relationship="Self.FK__Rotors__Name__503BEA1C" FromRole="Rotors" ToRole="Main" />
+        </EntityType>
+        <Association Name="FK__Plugboard__Name__4F47C5E3">
+          <End Role="Main" Type="Self.Main" Multiplicity="1" />
+          <End Role="Plugboard" Type="Self.Plugboard" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Plugboard">
+              <PropertyRef Name="Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rotors__Name__503BEA1C">
+          <End Role="Main" Type="Self.Main" Multiplicity="1" />
+          <End Role="Rotors" Type="Self.Rotors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Main">
+              <PropertyRef Name="Name" />
+            </Principal>
+            <Dependent Role="Rotors">
+              <PropertyRef Name="Name" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DBSettingsContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Main" EntityType="Self.Main" />
+          <EntitySet Name="Plugboard" EntityType="Self.Plugboard" />
+          <EntitySet Name="Rotors" EntityType="Self.Rotors" />
+          <AssociationSet Name="FK__Plugboard__Name__4F47C5E3" Association="Self.FK__Plugboard__Name__4F47C5E3">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="Plugboard" EntitySet="Plugboard" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rotors__Name__503BEA1C" Association="Self.FK__Rotors__Name__503BEA1C">
+            <End Role="Main" EntitySet="Main" />
+            <End Role="Rotors" EntitySet="Rotors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище DBSettingsModelContainer" CdmEntityContainer="DBSettingsContext">
+          <EntitySetMapping Name="Main">
+            <EntityTypeMapping TypeName="DBSettingsModel.Main">
+              <MappingFragment StoreEntitySet="Main">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Alphabet" ColumnName="Alphabet" />
+                <ScalarProperty Name="Sensitivity" ColumnName="Sensitivity" />
+                <ScalarProperty Name="Reflector" ColumnName="Reflector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plugboard">
+            <EntityTypeMapping TypeName="DBSettingsModel.Plugboard">
+              <MappingFragment StoreEntitySet="Plugboard">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Couple" ColumnName="Couple" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rotors">
+            <EntityTypeMapping TypeName="DBSettingsModel.Rotors">
+              <MappingFragment StoreEntitySet="Rotors">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Rotor" ColumnName="Rotor" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

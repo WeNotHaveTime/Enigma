@@ -1,9 +1,0 @@
-Моя'Enigma' v1.0.0.0 Налаштування
-Комутаційна пара0: DataGridViewTextBoxCell { ColumnIndex=0, RowIndex=0 }
-Ротор0: СМХЮЪNIОЯVДTC9H0ALЛҐНКЖЗX!14ГУMDФ3-ЧPEШSKZUВА,ЬWYЦИ Ї5Е8БЄ62Т7ЁFJЩ?ІGRРQПЫ.BЙO
-Позиція0: 5
-Ротор1: AF?ЄЩNШM8BЦЗGДЛTМOБЮЬZXCJИHҐ2 РЖK3СК-6Н9E7ВЁЯЪIDQYЧЇLU.4S!ТЙЫ5ХRП0PОЕФ1Г,VІWАУ
-Позиція1: 0
-Ротор2: Д1K28O!GІQFАLҐЦМЫ,P0RЖПСГЩЙ?О3-Ч5ФTЇЯ9К4ЕИЬРWHX7JБIVNЪЛS ЄUВТХ6EНBЮAЁ.ЗDZШMУCY
-Позиція2: 0
-Рефлектор: ШHMЙSKЪДЯGRБЄО?ЮМ6ХВ F9DAФС8QPЛ4LЬOU,2NАЇTJ0VПЕE-Н.YЦЖ5РИZЧXТ1Г!7IЗУBКЩҐЁЫW3CІ

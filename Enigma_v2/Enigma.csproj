@@ -13,6 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <ApplicationVersion>3.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,6 +52,9 @@
     <ApplicationIcon>Cjdowner-Cryptocurrency-Flat-Enigma-ENG.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
     </Reference>
@@ -68,7 +71,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -93,17 +100,41 @@
     <Compile Include="F_Cript.Designer.cs">
       <DependentUpon>F_Cript.cs</DependentUpon>
     </Compile>
-    <Compile Include="F_Instuction.cs">
+    <Compile Include="F_Help_for_Cript.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_Instuction.Designer.cs">
-      <DependentUpon>F_Instuction.cs</DependentUpon>
+    <Compile Include="F_Help_for_Cript.Designer.cs">
+      <DependentUpon>F_Help_for_Cript.cs</DependentUpon>
     </Compile>
-    <Compile Include="F_Settings.cs">
+    <Compile Include="F_SettingsManager.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="F_Settings.Designer.cs">
-      <DependentUpon>F_Settings.cs</DependentUpon>
+    <Compile Include="F_SettingsManager.Designer.cs">
+      <DependentUpon>F_SettingsManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="F_Stage_1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Stage_1.Designer.cs">
+      <DependentUpon>F_Stage_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="F_Stage_2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Stage_2.Designer.cs">
+      <DependentUpon>F_Stage_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="F_Stage_3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Stage_3.Designer.cs">
+      <DependentUpon>F_Stage_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="F_Stage_4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Stage_4.Designer.cs">
+      <DependentUpon>F_Stage_4.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,11 +147,23 @@
     <EmbeddedResource Include="F_Cript.resx">
       <DependentUpon>F_Cript.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F_Instuction.resx">
-      <DependentUpon>F_Instuction.cs</DependentUpon>
+    <EmbeddedResource Include="F_Help_for_Cript.resx">
+      <DependentUpon>F_Help_for_Cript.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="F_Settings.resx">
-      <DependentUpon>F_Settings.cs</DependentUpon>
+    <EmbeddedResource Include="F_SettingsManager.resx">
+      <DependentUpon>F_SettingsManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Stage_1.resx">
+      <DependentUpon>F_Stage_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Stage_2.resx">
+      <DependentUpon>F_Stage_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Stage_3.resx">
+      <DependentUpon>F_Stage_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Stage_4.resx">
+      <DependentUpon>F_Stage_4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -154,7 +197,17 @@
     <None Include="Resources\11111.png" />
     <None Include="Resources\down.png" />
     <None Include="Resources\Bakelite-icon.png" />
-    <None Include="Resources\TextFile1.txt" />
+    <Content Include="DBSettings.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="DBSettings_log.ldf">
+      <DependentUpon>DBSettings.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\back.png" />
+    <None Include="Resources\Enigma.jpg" />
+    <Content Include="Resources\Hand-Touch-2-icon.png" />
+    <Content Include="Resources\next-icon.png" />
     <Content Include="Updates.txt" />
     <None Include="Resources\up-icon1.png" />
     <None Include="Resources\up-icon.png" />
@@ -171,6 +224,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

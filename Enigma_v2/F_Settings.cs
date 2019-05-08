@@ -142,6 +142,7 @@ namespace Enigma
                     Import("SaveSettings.GG");
                     B_Done_Click(sender, e);    
                 }
+                F_Load();
             }
             else
             {

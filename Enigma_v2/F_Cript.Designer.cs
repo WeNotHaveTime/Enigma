@@ -53,7 +53,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(57, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(164, 54);
+            this.label1.Size = new System.Drawing.Size(129, 42);
             this.label1.TabIndex = 5;
             this.label1.Text = "Enigma";
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
@@ -63,7 +63,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 32);
+            this.label2.Size = new System.Drawing.Size(69, 25);
             this.label2.TabIndex = 11;
             this.label2.Text = "Текст:";
             // 
@@ -72,7 +72,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 339);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 32);
+            this.label3.Size = new System.Drawing.Size(72, 25);
             this.label3.TabIndex = 11;
             this.label3.Text = "Шифр:";
             // 
@@ -121,7 +121,6 @@
             // 
             // B_Instruction
             // 
-            this.B_Instruction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.B_Instruction.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(71)))), ((int)(((byte)(79)))));
             this.B_Instruction.BackgroundImage = global::Enigma.Properties.Resources.Enigma_ENG_icon;
             this.B_Instruction.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -138,6 +137,7 @@
             // 
             // B_Exit
             // 
+            this.B_Exit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.B_Exit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(71)))), ((int)(((byte)(79)))));
             this.B_Exit.BackgroundImage = global::Enigma.Properties.Resources.Close_icon;
             this.B_Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -185,7 +185,7 @@
             // 
             // F_Cript
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 32F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(840, 472);
@@ -207,7 +207,6 @@
             this.Name = "F_Cript";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.F_Cript_Load);
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.WhoIam);
             this.CaptureModul.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

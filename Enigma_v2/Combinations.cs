@@ -8,7 +8,7 @@ namespace Enigma
 {
     static class Combinations
     {
-        static public double Calculate_combinations(Settings S, int alphabet_count)
+        static public double Calculate_combinations(Settings S)
         {
             double Factorial(int numb)
             {
@@ -18,8 +18,8 @@ namespace Enigma
                 return res;
             }
 
-            int n = alphabet_count;
-            int l = S.Rotors.Count + 1; // +1 тому, що рефлектор виконує теж алгоритм заміни
+            int n = S.Alphabet.Length;
+            int l = S.Rotors.Count + 1; // +1 тому, що рефлектор теж виконує алгоритм заміни
             int m = S.Plugboard.Count;
 
             double what_rotors = Factorial(n);

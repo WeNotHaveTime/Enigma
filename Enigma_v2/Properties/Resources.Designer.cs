@@ -73,6 +73,16 @@ namespace Enigma.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap back {
+            get {
+                object obj = ResourceManager.GetObject("back", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Bakelite_icon {
             get {
                 object obj = ResourceManager.GetObject("Bakelite-icon", resourceCulture);
@@ -113,6 +123,16 @@ namespace Enigma.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Enigma {
+            get {
+                object obj = ResourceManager.GetObject("Enigma", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Enigma_ENG_icon {
             get {
                 object obj = ResourceManager.GetObject("Enigma_ENG_icon", resourceCulture);
@@ -133,9 +153,29 @@ namespace Enigma.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Hand_Touch_2_icon {
+            get {
+                object obj = ResourceManager.GetObject("Hand_Touch_2_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap next_2_icon {
             get {
                 object obj = ResourceManager.GetObject("next_2_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap next_icon {
+            get {
+                object obj = ResourceManager.GetObject("next_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

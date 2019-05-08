@@ -16,7 +16,7 @@ namespace Enigma
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new F_Settings());
+            Application.Run(new F_Cript());
         }
         
     }

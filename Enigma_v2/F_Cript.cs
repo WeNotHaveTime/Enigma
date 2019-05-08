@@ -25,11 +25,6 @@ namespace Enigma
             ReleaseCapture();
             PostMessage(this.Handle, WM_SYSCOMMAND, DOMOVE, 0);
         }
-        private void WhoIam(object sender, KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode.ToString() == "W")
-                MessageBox.Show("Програму було розроблено Шафаренком Богданом, 2019", "_GG_");
-        }
 
         public Settings Settings;
         public F_Cript()
@@ -37,41 +32,46 @@ namespace Enigma
             InitializeComponent();
         }
 
-        private void B_Exit_Click(object sender, EventArgs e)
+        private void Visual_Close_Form()
         {
-            Timer timer2 = new Timer();
-            timer2.Tick += new EventHandler((sender2, e2) =>
+            Timer T = new Timer();
+            T.Tick += new EventHandler((sender2, e2) =>
             {
                 if ((Opacity -= 0.025) < 0)
                 {
-                    timer2.Stop();
+                    T.Stop();
                     Application.Exit();
                 }
             });
-            timer2.Interval = 1;
-            timer2.Start();
-
+            T.Interval = 1;
+            T.Start();
         }
-
-        private void F_Cript_Load(object sender, EventArgs e)
+        private void Visual_Load_Form()
         {
-
             Opacity = 0;
-            Timer timer1 = new Timer();
-            timer1.Tick += new EventHandler((sender1, e1) =>
+            Timer T = new Timer();
+            T.Tick += new EventHandler((sender1, e1) =>
             {
                 if ((Opacity += 0.025) == 1)
-                    timer1.Stop();
+                    T.Stop();
             });
-            timer1.Interval = 1;
-            timer1.Start();
+            T.Interval = 1;
+            T.Start();
+
+        }
+        private void B_Exit_Click(object sender, EventArgs e)
+        {
+            Visual_Close_Form();
+        }
+        private void F_Cript_Load(object sender, EventArgs e)
+        {
+            Visual_Load_Form();
         }
 
         private void B_Settings_Click(object sender, EventArgs e)
         {
-            F_Settings M = Application.OpenForms.OfType<F_Settings>().Single(); // Звертання до існуючого екземпляру Форми
+            F_SettingsManager M = new F_SettingsManager();
             M.Show();
-            M.F_Load();
             Hide();
         }
 
@@ -84,7 +84,7 @@ namespace Enigma
             else
             {
 
-                string tx = T_Input.Text.ToUpper();
+                string tx = T_Input.Text;
                 Cript C = new Cript(tx, Settings);
 
                 T_Cript.Text =  C.Output;
@@ -94,8 +94,9 @@ namespace Enigma
 
         private void B_Instruction_Click(object sender, EventArgs e)
         {
-            F_Instuction I = new F_Instuction();
-            I.Show();
+            var F = new F_Help_for_Cript();
+            F.Show();
+            Hide();
         }
 
     }

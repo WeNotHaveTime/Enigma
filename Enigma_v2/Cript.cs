@@ -8,9 +8,8 @@ namespace Enigma
 {
     class Cript
     {
-        
-        private const string alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.,-?0123456789 АБВГҐДЕЁЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЪЫЬЮЯ";
-        private int lenth = alphabet.Length - 1;
+
+        private string alphabet;
 
         public string Input { get; private set; }
         public string Output { get; private set; }
@@ -23,7 +22,13 @@ namespace Enigma
 
         public Cript(string tx, Settings S)
         {
-            Input = tx;
+            if (S.Sensitivity)
+            {
+                Input = tx;
+            }
+            else Input = tx.ToUpper();
+
+            alphabet = S.Alphabet;
 
             Plugboard.AddRange(S.Plugboard);
             _Rotors.AddRange(S.Rotors);
@@ -45,7 +50,7 @@ namespace Enigma
 
             for (int n = 0; n < count; n++)
             {
-                if (Positions[n] == lenth)
+                if (Positions[n] == alphabet.Length - 1)
                 {
                     Positions[n] = 0;
                 }
@@ -82,7 +87,7 @@ namespace Enigma
                 return R;
             } //Зміна запису ротору перед шифруванням (фактична зміна ротора)
 
-            List<string> Rotors = new List<string>();
+            List<string> Rotors;
             Rotors = Rotor_String();
             //
             // Шифр = Панель * Ротори * Pефлектор * Pотори^-1 * Панель
@@ -138,7 +143,7 @@ namespace Enigma
                         position = i;
                     }
                 }
-                position = lenth - position;
+                position = alphabet.Length -1  - position;
                 letter = Reflector.ElementAt(position);
             }
            

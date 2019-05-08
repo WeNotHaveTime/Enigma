@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="228dceb181bb4f50bdb5c2880db2d3b5" Name="Diagram1">
+        <EntityTypeShape EntityType="DBSettingsModel.Main" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBSettingsModel.Plugboard" Width="1.5" PointX="2.875" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBSettingsModel.Rotors" Width="1.5" PointX="4.875" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="DBSettingsModel.FK__Plugboard__Name__4F47C5E3" ManuallyRouted="false" />
+        <AssociationConnector Association="DBSettingsModel.FK__Rotors__Name__503BEA1C" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
