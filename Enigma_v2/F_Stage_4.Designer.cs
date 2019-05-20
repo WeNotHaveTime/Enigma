@@ -49,8 +49,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.L_Alpha_K = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.B_Rand = new System.Windows.Forms.Button();
+            this.Num_Plugboard = new System.Windows.Forms.NumericUpDown();
             this.CaptureModul.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Num_Plugboard)).BeginInit();
             this.SuspendLayout();
             // 
             // CaptureModul
@@ -217,7 +220,7 @@
             this.B_Remove_Couple.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.B_Remove_Couple.Font = new System.Drawing.Font("Segoe Script", 8.25F);
             this.B_Remove_Couple.ForeColor = System.Drawing.Color.White;
-            this.B_Remove_Couple.Location = new System.Drawing.Point(521, 171);
+            this.B_Remove_Couple.Location = new System.Drawing.Point(521, 132);
             this.B_Remove_Couple.Name = "B_Remove_Couple";
             this.B_Remove_Couple.Size = new System.Drawing.Size(64, 64);
             this.B_Remove_Couple.TabIndex = 273;
@@ -230,7 +233,7 @@
             // 
             this.T_K2.BackColor = System.Drawing.Color.DarkGray;
             this.T_K2.ForeColor = System.Drawing.Color.White;
-            this.T_K2.Location = new System.Drawing.Point(198, 162);
+            this.T_K2.Location = new System.Drawing.Point(204, 201);
             this.T_K2.MaxLength = 1;
             this.T_K2.Name = "T_K2";
             this.T_K2.Size = new System.Drawing.Size(44, 33);
@@ -241,7 +244,7 @@
             // 
             this.T_K1.BackColor = System.Drawing.Color.DarkGray;
             this.T_K1.ForeColor = System.Drawing.Color.White;
-            this.T_K1.Location = new System.Drawing.Point(148, 162);
+            this.T_K1.Location = new System.Drawing.Point(154, 201);
             this.T_K1.MaxLength = 1;
             this.T_K1.Name = "T_K1";
             this.T_K1.Size = new System.Drawing.Size(44, 33);
@@ -266,7 +269,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe Script", 12F);
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(11, 165);
+            this.label2.Location = new System.Drawing.Point(17, 204);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(132, 25);
@@ -281,14 +284,58 @@
             this.L_Alpha_K.Location = new System.Drawing.Point(11, 140);
             this.L_Alpha_K.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.L_Alpha_K.Name = "L_Alpha_K";
-            this.L_Alpha_K.Size = new System.Drawing.Size(574, 25);
+            this.L_Alpha_K.Size = new System.Drawing.Size(435, 56);
             this.L_Alpha_K.TabIndex = 272;
             this.L_Alpha_K.Text = "Алфавіт\r\n";
+            this.L_Alpha_K.TextChanged += new System.EventHandler(this.L_Alpha_K_TextChanged);
+            // 
+            // B_Rand
+            // 
+            this.B_Rand.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(71)))), ((int)(((byte)(79)))));
+            this.B_Rand.BackgroundImage = global::Enigma.Properties.Resources.Gaming_Dice_icon;
+            this.B_Rand.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.B_Rand.FlatAppearance.BorderSize = 0;
+            this.B_Rand.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.B_Rand.Font = new System.Drawing.Font("Segoe Script", 8.25F);
+            this.B_Rand.ForeColor = System.Drawing.Color.White;
+            this.B_Rand.Location = new System.Drawing.Point(451, 132);
+            this.B_Rand.Name = "B_Rand";
+            this.B_Rand.Size = new System.Drawing.Size(64, 64);
+            this.B_Rand.TabIndex = 275;
+            this.B_Rand.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.toolTip1.SetToolTip(this.B_Rand, "Випадковий ротор");
+            this.B_Rand.UseVisualStyleBackColor = false;
+            this.B_Rand.Click += new System.EventHandler(this.B_Rand_Click);
+            // 
+            // Num_Plugboard
+            // 
+            this.Num_Plugboard.Location = new System.Drawing.Point(451, 202);
+            this.Num_Plugboard.Maximum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Num_Plugboard.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Num_Plugboard.Name = "Num_Plugboard";
+            this.Num_Plugboard.Size = new System.Drawing.Size(134, 33);
+            this.Num_Plugboard.TabIndex = 279;
+            this.Num_Plugboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.Num_Plugboard.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // F_Stage_4
             // 
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(722, 246);
+            this.Controls.Add(this.Num_Plugboard);
+            this.Controls.Add(this.B_Rand);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.B_Remove_Couple);
             this.Controls.Add(this.T_K2);
@@ -308,6 +355,7 @@
             this.CaptureModul.ResumeLayout(false);
             this.CaptureModul.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Num_Plugboard)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -331,5 +379,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label L_Alpha_K;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button B_Rand;
+        private System.Windows.Forms.NumericUpDown Num_Plugboard;
     }
 }

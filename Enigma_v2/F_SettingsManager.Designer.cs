@@ -40,7 +40,6 @@
             this.B_Import = new System.Windows.Forms.Button();
             this.B_Instruction = new System.Windows.Forms.Button();
             this.B_Exit = new System.Windows.Forms.Button();
-            this.elipseControl1 = new Enigma.ElipseControl();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.T_Name = new System.Windows.Forms.TextBox();
@@ -52,6 +51,7 @@
             this.B_Combinations = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.elipseControl1 = new Enigma.ElipseControl();
             this.CaptureModul.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -151,11 +151,6 @@
             this.B_Exit.UseVisualStyleBackColor = false;
             this.B_Exit.Click += new System.EventHandler(this.B_Exit_Click);
             // 
-            // elipseControl1
-            // 
-            this.elipseControl1.CornerRadius = 50;
-            this.elipseControl1.TargetControl = this;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
@@ -218,7 +213,7 @@
             this.T_Name.ForeColor = System.Drawing.Color.White;
             this.T_Name.Location = new System.Drawing.Point(97, 296);
             this.T_Name.Margin = new System.Windows.Forms.Padding(6);
-            this.T_Name.MaxLength = 27;
+            this.T_Name.MaxLength = 50;
             this.T_Name.Name = "T_Name";
             this.T_Name.Size = new System.Drawing.Size(329, 33);
             this.T_Name.TabIndex = 246;
@@ -307,7 +302,7 @@
             this.B_Combinations.Size = new System.Drawing.Size(64, 64);
             this.B_Combinations.TabIndex = 254;
             this.B_Combinations.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.toolTip1.SetToolTip(this.B_Combinations, "Переглянути криптостійкість налаштувань");
+            this.toolTip1.SetToolTip(this.B_Combinations, "Переглянути дані та криптостійкість налаштувань");
             this.B_Combinations.UseVisualStyleBackColor = false;
             this.B_Combinations.Click += new System.EventHandler(this.B_Combinations_Click);
             // 
@@ -321,6 +316,11 @@
             // 
             this.saveFileDialog1.DefaultExt = "GG";
             this.saveFileDialog1.Filter = "Enigma Settings|*.GG";
+            // 
+            // elipseControl1
+            // 
+            this.elipseControl1.CornerRadius = 50;
+            this.elipseControl1.TargetControl = this;
             // 
             // F_SettingsManager
             // 
@@ -359,7 +359,6 @@
         private System.Windows.Forms.Button B_Instruction;
         private System.Windows.Forms.Button B_Exit;
         private ElipseControl elipseControl1;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox T_Name;
         private System.Windows.Forms.Button B_Add;
         private System.Windows.Forms.Button B_Rem;
@@ -372,5 +371,6 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button B_Combinations;
+        public System.Windows.Forms.DataGridView dataGridView1;
     }
 }

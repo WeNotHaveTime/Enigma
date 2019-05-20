@@ -43,130 +43,7 @@ namespace Enigma
             InitializeComponent();
         }
 
-        SqlDataReader sqlReader = null;  // ініціалізація 
-        Settings setting;
-
-
-        public async void My_ExecuteNonQueryAsync(SqlCommand command)
-        {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-            command.Connection = conn;
-            await command.ExecuteNonQueryAsync();
-            conn.Close();
-        } //Виконання команди
-        public async void Select_toTable()
-        {
-            dataGridView1.Rows.Clear();
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
-            SqlConnection conn = new SqlConnection(connectionString);
-            await conn.OpenAsync();
-            SqlCommand info = new SqlCommand("SELECT Name FROM [Main]", conn);
-            try
-            {
-                sqlReader = await info.ExecuteReaderAsync();
-                while (await sqlReader.ReadAsync())
-                {
-                    dataGridView1.Rows.Add(sqlReader[0].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (sqlReader != null)
-                    sqlReader.Close();
-
-            }
-        }
-        public void DB_to_Settings()
-        {
-            string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-            string alphabet = "";
-            bool sensitivity = false;
-            string reflector = "";
-            List<string> Plugboard = new List<string>();
-            List<string> Rotors = new List<string>();
-            List<int> Positions = new List<int>();
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-
-            SqlCommand M = new SqlCommand("SELECT * FROM [Main] WHERE [Name] = '" + name + "'", conn);
-            SqlCommand R = new SqlCommand("SELECT [Rotor], [Position] FROM [Rotors] WHERE [Name] = '" + name + "'", conn);
-            SqlCommand P = new SqlCommand("SELECT [Couple] FROM [Plugboard] WHERE [Name] = '" + name + "'", conn);
-            try
-            {
-                sqlReader = M.ExecuteReader();
-                while (sqlReader.Read())
-                {
-                    alphabet = sqlReader[1].ToString();
-                    sensitivity = Convert.ToBoolean(sqlReader[2]);
-                    reflector = sqlReader[3].ToString();
-                }
-                sqlReader.Close();
-
-                sqlReader =  R.ExecuteReader();
-                while ( sqlReader.Read())
-                {
-                    Rotors.Add(sqlReader[0].ToString());
-                    Positions.Add(Convert.ToInt32(sqlReader[1]));
-                }
-                sqlReader.Close();
-
-                sqlReader =  P.ExecuteReader();
-                while ( sqlReader.Read())
-                {
-                    Plugboard.Add(sqlReader[0].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (sqlReader != null)
-                    sqlReader.Close();
-                setting = new Settings(name, alphabet, sensitivity, Plugboard, Rotors, Positions, reflector);
-
-            }
-
-        }
-        public void Insert(string name, string alphabet, bool sensitivity, string reflector, List<string> Rotors, List<int> Positions, List<string> Plugboard)
-        {
-            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (@Name, @Alphabet, @Sensitivity, @Reflector)");
-            addM.Parameters.AddWithValue("Name", name);
-            addM.Parameters.AddWithValue("Alphabet", alphabet);
-            addM.Parameters.AddWithValue("Sensitivity", Convert.ToInt16(sensitivity));
-            addM.Parameters.AddWithValue("Reflector", reflector);
-            My_ExecuteNonQueryAsync(addM);
-
-            for (int i = 0; i < Rotors.Count; i++)
-            {
-                SqlCommand addR = new SqlCommand("INSERT INTO [Rotors] ([Name], [Rotor], [Position]) VALUES (@Name, @Rotor, @Position)");
-                addR.Parameters.AddWithValue("Name", name);
-                addR.Parameters.AddWithValue("Rotor", Rotors[i]);
-                addR.Parameters.AddWithValue("Position", Positions[i]);
-                My_ExecuteNonQueryAsync(addR);
-            }
-            for (int i = 0; i < Plugboard.Count; i++)
-            {
-                SqlCommand addP = new SqlCommand("INSERT INTO [Plugboard] ([Name], [Couple]) VALUES (@Name, @Couple)");
-                addP.Parameters.AddWithValue("Name", name);
-                addP.Parameters.AddWithValue("Couple", Plugboard[i]);
-                My_ExecuteNonQueryAsync(addP);
-            }
-
-        } // Додавання елементу
-        public void Remove(string Name)
-        {
-            SqlCommand rem = new SqlCommand("DELETE FROM [Main] WHERE Name = '" + Name + "'");
-            My_ExecuteNonQueryAsync(rem);
-        } //видалення елемента
+        public Settings setting;
 
 
         private bool NewName()
@@ -187,7 +64,7 @@ namespace Enigma
             {
                 if (NewName())
                 {
-                    F_Stage_1 F = new F_Stage_1(T_Name.Text);
+                    var F = new F_Stage_1(T_Name.Text);
                     F.Show();
                     T_Name.Clear();
                     Hide();
@@ -203,17 +80,17 @@ namespace Enigma
         {
             if (dataGridView1.RowCount != 0)
             {
-                Remove(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                Select();
+                DBComunicate.Remove(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
+                DBComunicate.Select_toTable(ref dataGridView1);
             }
             else MessageBox.Show("Таблиця пуста!");
-            Select_toTable();
         }
         private void B_Choose_Click(object sender, EventArgs e)
         {
             if (dataGridView1.RowCount != 0)
             {
-                DB_to_Settings();
+                string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                DBComunicate.DB_to_Settings(name, ref setting);
                 var F = Application.OpenForms.OfType<F_Cript>().Single();
                 F.Settings = setting;
                 F.Show();
@@ -226,7 +103,7 @@ namespace Enigma
         private void F_SettingsManager_Load(object sender, EventArgs e)
         {
             Visual_Load_Form();
-            Select_toTable();
+            DBComunicate.Select_toTable(ref dataGridView1);
         }
         private void B_Exit_Click(object sender, EventArgs e)
         {
@@ -239,8 +116,10 @@ namespace Enigma
         {
             if (dataGridView1.RowCount != 0)
             {
-                DB_to_Settings();
+                string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                DBComunicate.DB_to_Settings(name, ref setting);
 
+                saveFileDialog1.FileName = name;
                 if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     StreamWriter sr = new StreamWriter(saveFileDialog1.FileName);
@@ -314,8 +193,21 @@ namespace Enigma
                 sr.Close();
                 try
                 {
-                    Insert(name, alphabet, sensitivity, reflector, Rotors, Positions, Plugboard);
-
+                    for (i = 0; i < dataGridView1.RowCount; i++)
+                    {
+                        if(dataGridView1.Rows[i].Cells[0].Value.ToString() == name)
+                        {
+                            if(MessageBox.Show("В базі даних вже існують налаштування під даною назвою, замінити?", "Імпорт налаштування під назвою: "+ name,
+                                MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                DBComunicate.Remove(name);
+                                DBComunicate.Insert(name, alphabet, sensitivity, reflector, Rotors, Positions, Plugboard);
+                                DBComunicate.Select_toTable(ref dataGridView1);
+                            }
+                            return;
+                        }
+                    }
+                    DBComunicate.Insert(name, alphabet, sensitivity, reflector, Rotors, Positions, Plugboard);
                 }
                 catch (Exception ex)
                 {
@@ -323,16 +215,21 @@ namespace Enigma
                 }
                 finally
                 {
-                    Select_toTable();
+                    DBComunicate.Select_toTable(ref dataGridView1);
                 }
             }
         }
 
         private void B_Combinations_Click(object sender, EventArgs e)
         {
-            DB_to_Settings();
-            
-            MessageBox.Show(Combinations.Calculate_combinations(setting).ToString(), "Кількість комбінацій");
+            string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+            DBComunicate.DB_to_Settings(name, ref setting);
+
+            MessageBox.Show(
+                "Кількість пар комутаційної панелі: " + setting.Plugboard.Count + Environment.NewLine +
+                "Кількість роторів: " + setting.Rotors.Count + Environment.NewLine +
+                "Криптостійкість (кількість комбінацій заданих налаштувань): " + Combinations.Calculate_combinations(setting).ToString(),
+                "Налаштування: " + setting.Name);
         }
     }
 }

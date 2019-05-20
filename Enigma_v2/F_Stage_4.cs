@@ -37,38 +37,46 @@ namespace Enigma
 
         }
 
-        public async void My_ExecuteNonQueryAsync(SqlCommand command)
+        public void My_ExecuteNonQuery(SqlCommand command)
         {
             string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             command.Connection = conn;
-            await command.ExecuteNonQueryAsync();
+            command.ExecuteNonQuery();
             conn.Close();
         } //Виконання команди
         public void Insert(string name, string alphabet, bool sensitivity, string reflector, List<string> Rotors, List<int> Positions, List<string> Plugboard)
         {
-            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (@Name, @Alphabet, @Sensitivity, @Reflector)");
-            addM.Parameters.AddWithValue("Name", name);
+            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (N'"+ name +"', @Alphabet, @Sensitivity, @Reflector)");
+            //addM.Parameters.AddWithValue("Name", name);
             addM.Parameters.AddWithValue("Alphabet", alphabet);
             addM.Parameters.AddWithValue("Sensitivity", Convert.ToInt16(sensitivity));
             addM.Parameters.AddWithValue("Reflector", reflector);
-            My_ExecuteNonQueryAsync(addM);
+            My_ExecuteNonQuery(addM);
 
-            for (int i = 0; i < Rotors.Count; i++)
+            if (Rotors.Count != 0)
             {
-                SqlCommand addR = new SqlCommand("INSERT INTO [Rotors] ([Name], [Rotor], [Position]) VALUES (@Name, @Rotor, @Position)");
-                addR.Parameters.AddWithValue("Name", name);
-                addR.Parameters.AddWithValue("Rotor", Rotors[i]);
-                addR.Parameters.AddWithValue("Position", Positions[i]);
-                My_ExecuteNonQueryAsync(addR);
+                SqlCommand addR = new SqlCommand();
+                addR.CommandText = "INSERT INTO [Rotors] ([Name], [Rotor], [Position])";
+                for (int i = 0; i < Rotors.Count; i++)
+                {
+                    if(i == 0) addR.CommandText += " VALUES (N'"+ name +"', '"+ Rotors[i] +"', "+ Positions[i] + ")";
+                    else addR.CommandText += ", ('" + name + "', '" + Rotors[i] + "', " + Positions[i] + ")";
+                }
+                My_ExecuteNonQuery(addR);
             }
-            for (int i = 0; i < Plugboard.Count; i++)
+
+            if (Plugboard.Count != 0)
             {
-                SqlCommand addP = new SqlCommand("INSERT INTO [Plugboard] ([Name], [Couple]) VALUES (@Name, @Couple)");
-                addP.Parameters.AddWithValue("Name", name);
-                addP.Parameters.AddWithValue("Couple", Plugboard[i]);
-                My_ExecuteNonQueryAsync(addP);
+                SqlCommand addP = new SqlCommand();
+                addP.CommandText = "INSERT INTO [Plugboard] ([Name], [Couple])";
+                for (int i = 0; i < Plugboard.Count; i++)
+                {
+                    if (i == 0) addP.CommandText += " VALUES (N'"+ name +"', '" +  Plugboard[i]+"')";
+                    else addP.CommandText += ", ('" + name + "', '" + Plugboard[i] + "')";
+                }
+                My_ExecuteNonQuery(addP);
             }
 
         } // Додавання елементу
@@ -99,21 +107,30 @@ namespace Enigma
             }
         }
 
+        private void Remove_Ch()
+        {
+            L_Alpha_K.Text = alphabet;
+
+            for (int i = 0; i < dataGridView2.RowCount; i++)
+            {
+                L_Alpha_K.Text = L_Alpha_K.Text.Remove(L_Alpha_K.Text.IndexOf(dataGridView2.Rows[i].Cells[0].Value.ToString()[0]), 1);
+                L_Alpha_K.Text = L_Alpha_K.Text.Remove(L_Alpha_K.Text.IndexOf(dataGridView2.Rows[i].Cells[0].Value.ToString()[1]), 1);
+            }
+            T.SetToolTip(L_Alpha_K, L_Alpha_K.Text);
+        }
+
         private void T_K1_TextChanged(object sender, EventArgs e)
         {
             if (T_K1.Text == "")
                 return;
             if (L_Alpha_K.Text.Contains(T_K1.Text))
                 T_K2.Focus();
-            if (L_Alpha_K.Text.Contains(T_K1.Text) && L_Alpha_K.Text.Contains(T_K2.Text) && T_K1.Text != "" && T_K2.Text != "")
+            if (L_Alpha_K.Text.Contains(T_K1.Text) && L_Alpha_K.Text.Contains(T_K2.Text) && !string.IsNullOrEmpty(T_K1.Text) && !string.IsNullOrEmpty(T_K2.Text) && T_K1.Text != T_K2.Text)
             {
-                L_Alpha_K.Text = L_Alpha_K.Text.Replace(T_K1.Text, "");
-                L_Alpha_K.Text = L_Alpha_K.Text.Replace(T_K2.Text, "");
                 dataGridView2.Rows.Add(T_K1.Text + T_K2.Text);
                 T_K1.Clear();
                 T_K2.Clear();
-                T_K1.Focus();
-                T.SetToolTip(L_Alpha_K, L_Alpha_K.Text);
+                Remove_Ch();
             }
         }
         private void T_K2_TextChanged(object sender, EventArgs e)
@@ -122,25 +139,26 @@ namespace Enigma
                 return;
             if (L_Alpha_K.Text.Contains(T_K2.Text))
                 T_K1.Focus();
-            if (L_Alpha_K.Text.Contains(T_K1.Text) && L_Alpha_K.Text.Contains(T_K2.Text) && T_K1.Text != "" && T_K2.Text != "")
+            if (L_Alpha_K.Text.Contains(T_K1.Text) && L_Alpha_K.Text.Contains(T_K2.Text) && !string.IsNullOrEmpty(T_K1.Text) && !string.IsNullOrEmpty(T_K2.Text) && T_K1.Text != T_K2.Text)
             {
-                L_Alpha_K.Text = L_Alpha_K.Text.Replace(T_K1.Text, "");
-                L_Alpha_K.Text = L_Alpha_K.Text.Replace(T_K2.Text, "");
                 dataGridView2.Rows.Add(T_K1.Text + T_K2.Text);
                 T_K1.Clear();
                 T_K2.Clear();
-                T_K1.Focus();
-                T.SetToolTip(L_Alpha_K, L_Alpha_K.Text);
+                Remove_Ch();
             }
         }
         private void B_Remove_Couple_Click(object sender, EventArgs e)
         {
-                if (dataGridView2.RowCount != 0)
-                    dataGridView2.Rows.RemoveAt(dataGridView2.SelectedRows[0].Index);
-                else
-                {
-                    MessageBox.Show("Ви не додали жодної комутаційної пари!");
-                }
+            if (dataGridView2.RowCount != 0)
+            {
+                string tx = dataGridView2.SelectedRows[0].Cells[0].Value.ToString();
+                dataGridView2.Rows.RemoveAt(dataGridView2.SelectedRows[0].Index);
+                Remove_Ch();
+            }
+            else
+            {
+                MessageBox.Show("Ви не додали жодної комутаційної пари!");
+            }
 
         }
 
@@ -153,11 +171,11 @@ namespace Enigma
                 Plugboard.Add(dataGridView2.Rows[i].Cells[0].Value.ToString());
             }
             Insert(name, alphabet, sensitivity, reflector, Rotors, Positions, Plugboard);
-            var F = Application.OpenForms.OfType<F_SettingsManager>().First();
+            Application.OpenForms.OfType<F_SettingsManager>().First().Close();
             Application.OpenForms.OfType<F_Stage_1>().First().Close();
             Application.OpenForms.OfType<F_Stage_2>().First().Close();
             Application.OpenForms.OfType<F_Stage_3>().First().Close();
-            F.Select_toTable();
+            var F = new F_SettingsManager();
             F.Show();
             Close();
         }
@@ -171,6 +189,38 @@ namespace Enigma
         private void F_Stage_4_Load(object sender, EventArgs e)
         {
             Visual_Load_Form();
+        }
+
+        void Generarate_Plugboards(ref string alphabet, int number, ref List<string> Plugboards)
+        {
+            Random random = new Random();
+
+            for (int i = 0; i < number; i++)
+            {
+                char ch1 = alphabet[random.Next(0, alphabet.Length)];
+                alphabet = alphabet.Remove(alphabet.IndexOf(ch1), 1);
+                char ch2 = alphabet[random.Next(0, alphabet.Length)];
+                alphabet = alphabet.Remove(alphabet.IndexOf(ch2), 1);
+                Plugboards.Add(ch1.ToString() + ch2.ToString());
+            }
+        }
+        private void B_Rand_Click(object sender, EventArgs e)
+        {
+            List<string> Plugboards = new List<string>();
+            string tx = L_Alpha_K.Text;
+            Generarate_Plugboards(ref tx, (int)Num_Plugboard.Value, ref Plugboards);
+            L_Alpha_K.Text = tx;
+
+            for (int i = 0; i < Plugboards.Count; i++)
+            {
+                dataGridView2.Rows.Add(Plugboards[i]);
+            }
+            Remove_Ch();
+        }
+
+        private void L_Alpha_K_TextChanged(object sender, EventArgs e)
+        {
+            Num_Plugboard.Maximum = L_Alpha_K.Text.Length / 2;
         }
     }
 }

@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.CaptureModul = new System.Windows.Forms.Panel();
             this.B_Back = new System.Windows.Forms.Button();
+            this.L_Num_Rotors = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.B_Next = new System.Windows.Forms.Button();
             this.B_Instruction = new System.Windows.Forms.Button();
@@ -53,19 +54,21 @@
             this.B_Rand_Rotor = new System.Windows.Forms.Button();
             this.B_Add_Rotor = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.Num_Rotors = new System.Windows.Forms.NumericUpDown();
             this.CaptureModul.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_Ring)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Num_Rotors)).BeginInit();
             this.SuspendLayout();
             // 
             // CaptureModul
             // 
             this.CaptureModul.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(55)))), ((int)(((byte)(71)))), ((int)(((byte)(79)))));
             this.CaptureModul.Controls.Add(this.B_Back);
+            this.CaptureModul.Controls.Add(this.L_Num_Rotors);
             this.CaptureModul.Controls.Add(this.label4);
             this.CaptureModul.Controls.Add(this.B_Next);
             this.CaptureModul.Controls.Add(this.B_Instruction);
@@ -98,6 +101,19 @@
             this.B_Back.UseVisualStyleBackColor = false;
             this.B_Back.Click += new System.EventHandler(this.B_Back_Click);
             // 
+            // L_Num_Rotors
+            // 
+            this.L_Num_Rotors.AutoSize = true;
+            this.L_Num_Rotors.Font = new System.Drawing.Font("Segoe Script", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.L_Num_Rotors.ForeColor = System.Drawing.Color.Black;
+            this.L_Num_Rotors.Location = new System.Drawing.Point(336, 5);
+            this.L_Num_Rotors.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.L_Num_Rotors.Name = "L_Num_Rotors";
+            this.L_Num_Rotors.Size = new System.Drawing.Size(38, 42);
+            this.L_Num_Rotors.TabIndex = 275;
+            this.L_Num_Rotors.Text = "0";
+            this.L_Num_Rotors.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -106,9 +122,9 @@
             this.label4.Location = new System.Drawing.Point(206, 5);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(132, 42);
+            this.label4.Size = new System.Drawing.Size(140, 42);
             this.label4.TabIndex = 275;
-            this.label4.Text = "Ротори";
+            this.label4.Text = "Ротори:";
             this.label4.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
             // 
             // B_Next
@@ -369,7 +385,6 @@
             this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column3,
             this.Column1,
             this.Column2});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -400,27 +415,42 @@
             this.dataGridView1.TabIndex = 275;
             this.dataGridView1.TabStop = false;
             this.toolTip1.SetToolTip(this.dataGridView1, "Колекція роторів");
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 2F;
-            this.Column3.HeaderText = "№";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridView1_CellMouseDoubleClick);
+            this.dataGridView1.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.DataGridView1_RowsAdded);
+            this.dataGridView1.RowsRemoved += new System.Windows.Forms.DataGridViewRowsRemovedEventHandler(this.DataGridView1_RowsRemoved);
             // 
             // Column1
             // 
-            this.Column1.FillWeight = 20F;
+            this.Column1.FillWeight = 20.93909F;
             this.Column1.HeaderText = "Ротор";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
-            this.Column2.FillWeight = 5F;
+            this.Column2.FillWeight = 4.060913F;
             this.Column2.HeaderText = "Позиція";
             this.Column2.Name = "Column2";
             this.Column2.ReadOnly = true;
+            // 
+            // Num_Rotors
+            // 
+            this.Num_Rotors.Location = new System.Drawing.Point(574, 247);
+            this.Num_Rotors.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.Num_Rotors.Name = "Num_Rotors";
+            this.Num_Rotors.Size = new System.Drawing.Size(134, 33);
+            this.Num_Rotors.TabIndex = 276;
+            this.Num_Rotors.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.Num_Rotors, "Згенерувати дану кількість випадкових роторів");
+            this.Num_Rotors.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // F_Stage_3
             // 
@@ -428,6 +458,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(722, 479);
+            this.Controls.Add(this.Num_Rotors);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.B_All_reset);
             this.Controls.Add(this.B_Reset);
@@ -454,6 +485,7 @@
             this.CaptureModul.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Num_Ring)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Num_Rotors)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -480,9 +512,10 @@
         private System.Windows.Forms.Button B_Back;
         private System.Windows.Forms.Button B_Next;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.NumericUpDown Num_Rotors;
+        private System.Windows.Forms.Label L_Num_Rotors;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.ToolTip toolTip1;
     }
 }

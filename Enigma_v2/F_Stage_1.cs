@@ -116,7 +116,7 @@ namespace Enigma
                 string txx = tx.Substring(i + 1);
                 if (txx.Contains(ch))
                 {
-                    MessageBox.Show("Літери не можуть повторюватись!");
+                    MessageBox.Show("Літери не можуть повторюватись! (Для використання маленьких літер поставте прапорець чутливості регістру)");
                     return;
                 }
             }

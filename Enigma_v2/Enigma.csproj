@@ -86,13 +86,28 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Combinations.cs" />
     <Compile Include="Cript.cs" />
+    <Compile Include="DBComunicate.cs" />
     <Compile Include="ElipceControl.cs">
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="F_Alphabet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Alphabet.Designer.cs">
+      <DependentUpon>F_Alphabet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="F_Create_Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="F_Create_Settings.Designer.cs">
+      <DependentUpon>F_Create_Settings.cs</DependentUpon>
     </Compile>
     <Compile Include="F_Cript.cs">
       <SubType>Form</SubType>
@@ -144,6 +159,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <EmbeddedResource Include="F_Alphabet.resx">
+      <DependentUpon>F_Alphabet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_Create_Settings.resx">
+      <DependentUpon>F_Create_Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_Cript.resx">
       <DependentUpon>F_Cript.cs</DependentUpon>
     </EmbeddedResource>
@@ -208,6 +229,9 @@
     <None Include="Resources\Enigma.jpg" />
     <Content Include="Resources\Hand-Touch-2-icon.png" />
     <Content Include="Resources\next-icon.png" />
+    <None Include="Resources\Settings.png" />
+    <None Include="Resources\Setting.png" />
+    <None Include="Resources\Settings1.png" />
     <Content Include="Updates.txt" />
     <None Include="Resources\up-icon1.png" />
     <None Include="Resources\up-icon.png" />
