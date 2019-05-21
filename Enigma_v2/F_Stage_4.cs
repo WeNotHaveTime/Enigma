@@ -37,49 +37,6 @@ namespace Enigma
 
         }
 
-        public void My_ExecuteNonQuery(SqlCommand command)
-        {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-            command.Connection = conn;
-            command.ExecuteNonQuery();
-            conn.Close();
-        } //Виконання команди
-        public void Insert(string name, string alphabet, bool sensitivity, string reflector, List<string> Rotors, List<int> Positions, List<string> Plugboard)
-        {
-            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (N'"+ name +"', @Alphabet, @Sensitivity, @Reflector)");
-            //addM.Parameters.AddWithValue("Name", name);
-            addM.Parameters.AddWithValue("Alphabet", alphabet);
-            addM.Parameters.AddWithValue("Sensitivity", Convert.ToInt16(sensitivity));
-            addM.Parameters.AddWithValue("Reflector", reflector);
-            My_ExecuteNonQuery(addM);
-
-            if (Rotors.Count != 0)
-            {
-                SqlCommand addR = new SqlCommand();
-                addR.CommandText = "INSERT INTO [Rotors] ([Name], [Rotor], [Position])";
-                for (int i = 0; i < Rotors.Count; i++)
-                {
-                    if(i == 0) addR.CommandText += " VALUES (N'"+ name +"', '"+ Rotors[i] +"', "+ Positions[i] + ")";
-                    else addR.CommandText += ", ('" + name + "', '" + Rotors[i] + "', " + Positions[i] + ")";
-                }
-                My_ExecuteNonQuery(addR);
-            }
-
-            if (Plugboard.Count != 0)
-            {
-                SqlCommand addP = new SqlCommand();
-                addP.CommandText = "INSERT INTO [Plugboard] ([Name], [Couple])";
-                for (int i = 0; i < Plugboard.Count; i++)
-                {
-                    if (i == 0) addP.CommandText += " VALUES (N'"+ name +"', '" +  Plugboard[i]+"')";
-                    else addP.CommandText += ", ('" + name + "', '" + Plugboard[i] + "')";
-                }
-                My_ExecuteNonQuery(addP);
-            }
-
-        } // Додавання елементу
 
         ToolTip T = new ToolTip();
         string name;
@@ -170,7 +127,7 @@ namespace Enigma
             {
                 Plugboard.Add(dataGridView2.Rows[i].Cells[0].Value.ToString());
             }
-            Insert(name, alphabet, sensitivity, reflector, Rotors, Positions, Plugboard);
+            DBComunicate.Insert(name, alphabet, sensitivity, reflector, Rotors, Positions, Plugboard);
             Application.OpenForms.OfType<F_SettingsManager>().First().Close();
             Application.OpenForms.OfType<F_Stage_1>().First().Close();
             Application.OpenForms.OfType<F_Stage_2>().First().Close();

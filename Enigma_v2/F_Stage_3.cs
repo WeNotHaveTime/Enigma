@@ -202,8 +202,8 @@ namespace Enigma
             List<int> Pos = new List<int>();
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
-                Rotors.Add(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                Pos.Add((int)dataGridView1.SelectedRows[0].Cells[1].Value);
+                Rotors.Add(dataGridView1.Rows[i].Cells[0].Value.ToString());
+                Pos.Add((int)dataGridView1.Rows[i].Cells[1].Value);
             }
 
             F_Stage_4 F = new F_Stage_4(name, alphabet, sensitivity, reflector, Rotors, Pos);

@@ -121,7 +121,10 @@ namespace Enigma
                 }
             }
 
-      
+            if (!T_Alphabet.AutoCompleteCustomSource.Contains(tx))
+            {
+                T_Alphabet.AutoCompleteCustomSource.Add(tx);
+            }
             F_Stage_2 F = new F_Stage_2(name, tx, CH_Sensitivity.Checked);
             F.Show();
             Hide();

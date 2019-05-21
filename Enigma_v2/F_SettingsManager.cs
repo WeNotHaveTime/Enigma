@@ -222,14 +222,19 @@ namespace Enigma
 
         private void B_Combinations_Click(object sender, EventArgs e)
         {
-            string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-            DBComunicate.DB_to_Settings(name, ref setting);
+            if (dataGridView1.RowCount != 0)
+            {
+                string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                DBComunicate.DB_to_Settings(name, ref setting);
 
-            MessageBox.Show(
-                "Кількість пар комутаційної панелі: " + setting.Plugboard.Count + Environment.NewLine +
-                "Кількість роторів: " + setting.Rotors.Count + Environment.NewLine +
-                "Криптостійкість (кількість комбінацій заданих налаштувань): " + Combinations.Calculate_combinations(setting).ToString(),
-                "Налаштування: " + setting.Name);
+                MessageBox.Show(
+                    "Алфавіт: " + setting.Alphabet + Environment.NewLine +
+                    "Кількість пар комутаційної панелі: " + setting.Plugboard.Count + Environment.NewLine +
+                    "Кількість роторів: " + setting.Rotors.Count + Environment.NewLine +
+                    "Криптостійкість (кількість комбінацій заданих налаштувань): " + Combinations.Calculate_combinations(setting).ToString(),
+                    "Налаштування: " + setting.Name);
+            }
+            else MessageBox.Show("Таблиця пуста!");
         }
     }
 }

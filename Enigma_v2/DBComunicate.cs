@@ -57,9 +57,9 @@ namespace Enigma
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
 
-            SqlCommand M = new SqlCommand("SELECT * FROM [Main] WHERE [Name] = '" + name + "'", conn);
-            SqlCommand R = new SqlCommand("SELECT [Rotor], [Position] FROM [Rotors] WHERE [Name] = '" + name + "'", conn);
-            SqlCommand P = new SqlCommand("SELECT [Couple] FROM [Plugboard] WHERE [Name] = '" + name + "'", conn);
+            SqlCommand M = new SqlCommand("SELECT * FROM [Main] WHERE [Name] = N'" + name + "'", conn);
+            SqlCommand R = new SqlCommand("SELECT [Rotor], [Position] FROM [Rotors] WHERE [Name] = N'" + name + "'", conn);
+            SqlCommand P = new SqlCommand("SELECT [Couple] FROM [Plugboard] WHERE [Name] = N'" + name + "'", conn);
             try
             {
                 sqlReader = M.ExecuteReader();
@@ -100,11 +100,7 @@ namespace Enigma
         }
         static public void Insert(string name, string alphabet, bool sensitivity, string reflector, List<string> Rotors, List<int> Positions, List<string> Plugboard)
         {
-            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (N'" + name + "', @Alphabet, @Sensitivity, @Reflector)");
-            //addM.Parameters.AddWithValue("Name", name);
-            addM.Parameters.AddWithValue("Alphabet", alphabet);
-            addM.Parameters.AddWithValue("Sensitivity", Convert.ToInt16(sensitivity));
-            addM.Parameters.AddWithValue("Reflector", reflector);
+            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (N'" + name + "',N'" + alphabet + "', '"+ sensitivity.ToString() + "',N'" + reflector + "')");
             My_ExecuteNonQuery(addM);
 
             if (Rotors.Count != 0)
@@ -113,8 +109,8 @@ namespace Enigma
                 addR.CommandText = "INSERT INTO [Rotors] ([Name], [Rotor], [Position])";
                 for (int i = 0; i < Rotors.Count; i++)
                 {
-                    if (i == 0) addR.CommandText += " VALUES (N'" + name + "', '" + Rotors[i] + "', " + Positions[i] + ")";
-                    else addR.CommandText += ", ('" + name + "', '" + Rotors[i] + "', " + Positions[i] + ")";
+                    if (i == 0) addR.CommandText += " VALUES (N'" + name + "', N'" + Rotors[i] + "', " + Positions[i] + ")";
+                    else addR.CommandText += ", (N'" + name + "', N'" + Rotors[i] + "', " + Positions[i] + ")";
                 }
                 My_ExecuteNonQuery(addR);
             }
@@ -125,8 +121,8 @@ namespace Enigma
                 addP.CommandText = "INSERT INTO [Plugboard] ([Name], [Couple])";
                 for (int i = 0; i < Plugboard.Count; i++)
                 {
-                    if (i == 0) addP.CommandText += " VALUES (N'" + name + "', '" + Plugboard[i] + "')";
-                    else addP.CommandText += ", ('" + name + "', '" + Plugboard[i] + "')";
+                    if (i == 0) addP.CommandText += " VALUES (N'" + name + "', N'" + Plugboard[i] + "')";
+                    else addP.CommandText += ", (N'" + name + "', N'" + Plugboard[i] + "')";
                 }
                 My_ExecuteNonQuery(addP);
             }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Enigma
 {
@@ -64,17 +61,13 @@ namespace Enigma
 
         private char Cript_letter(char letter)
         {
-            if (!alphabet.Contains(letter)) { return letter; }// фільтр
+            if (!alphabet.Contains(letter))  return letter; // фільтр
 
             List<string> Rotor_String()
             {
                 List<string> R = new List<string>();
-
-                for (int i = 0; i < _Rotors.Count; i++)
-                {
-                    string S = _Rotors[i];
-                    R.Add(S);
-                }
+                R.AddRange(_Rotors);
+               
                 string rotor_inc = "";
                 for (int i = 0; i < _Rotors.Count(); i++)
                 {
@@ -85,43 +78,36 @@ namespace Enigma
                     }
                 }
                 return R;
-            } //Зміна запису ротору перед шифруванням (фактична зміна ротора)
+            } //Впровадження позицій
 
-            List<string> Rotors;
-            Rotors = Rotor_String();
+            List<string> Rotors = new List<string>(); ;
+            Rotors.AddRange(Rotor_String());
             //
             // Шифр = Панель * Ротори * Pефлектор * Pотори^-1 * Панель
             //
 
             // Етап 1 - Комутаційна панель
-            void F_Plugboard(){
-                for (int i = 0; i < Plugboard.Count; i++)
+            void Func_Plugboard()
+            {
+                foreach ( string pl in Plugboard)
                 {
-                    if (letter == Plugboard[i].ElementAt(0))
+                    if (pl[0] == letter)
                     {
-                        letter = Plugboard[i].ElementAt(1);
-
+                        letter = pl[1];
+                        break;
                     }
-                    else if (letter == Plugboard[i].ElementAt(1))
+                    if(pl[1] == letter)
                     {
-                        letter = Plugboard[i].ElementAt(0);
+                        letter = pl[0];
+                        break;
                     }
                 }
             }
-
+            Func_Plugboard();
             // Етап 2 - Пошук позиції в нерухомому вхідному колесі
-            int position = 0;
-            void find_position()
-            {
-                for (int i = 0; i < alphabet.Count(); i++)
-                {
-                    if (letter == alphabet[i])
-                    {
-                        position = i;
-                    }
-                }
-            } // створення ллокальної функції, оскільки процедука використовується неодноразово
-            find_position();
+
+            int position = alphabet.IndexOf(letter);
+            
 
             // Етап 3 - ротори - зростання. (0,1,2,3,4....)
             {
@@ -130,20 +116,22 @@ namespace Enigma
                     string rotor = Rotors[i]; // ротор
                     // Спочатку замінюємо, потім ідентифікуємо літеру (на якій позиції знаходиться літера відносно 0)
                     letter = rotor.ElementAt(position);
-                    find_position();
+
+                    position = alphabet.IndexOf(letter);
                 }
             }
            
             // Етап 4 Рефлектор (рефлектор є повністю симетричним)
             {
-                for (int i = 0; i < Reflector.Count(); i++)
-                {
-                    if (letter == Reflector[i])
-                    {
-                        position = i;
-                    }
-                }
-                position = alphabet.Length -1  - position;
+                position = Reflector.IndexOf(letter);
+                //for (int i = 0; i < Reflector.Count(); i++)
+                //{
+                //    if (letter == Reflector[i])
+                //    {
+                //        position = i;
+                //    }
+                //}
+                position = (alphabet.Length - 1) - position;
                 letter = Reflector.ElementAt(position);
             }
            
@@ -152,28 +140,22 @@ namespace Enigma
                 for (int i = Rotors.Count() - 1; i >= 0; i--)
                 {
                     string rotor = Rotors[i]; // ротор
-                    
-                    // Ідентифікуємо літеру в роторі, потім замінюємо
 
-                    for (int j = 0; j < Rotors[i].Count(); j++)
-                    {
-                        if (letter == rotor[j])
-                        {
-                            position = j;
-                        }
-                    }
+                    // Ідентифікуємо літеру в роторі, потім замінюємо
+                    position = rotor.IndexOf(letter);
+
                     letter = alphabet[position];
                 }
             }
             
             // Етап 6 Вхідне колесо
             {
-                find_position();
+                position = alphabet.IndexOf(letter);
                 letter = alphabet[position];
             }
 
             // Етап 7 Комутаційна панель
-            F_Plugboard();
+            Func_Plugboard();
 
             return letter;
         } // Шифрування символу

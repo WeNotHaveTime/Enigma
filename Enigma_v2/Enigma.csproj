@@ -103,12 +103,6 @@
     <Compile Include="F_Alphabet.Designer.cs">
       <DependentUpon>F_Alphabet.cs</DependentUpon>
     </Compile>
-    <Compile Include="F_Create_Settings.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="F_Create_Settings.Designer.cs">
-      <DependentUpon>F_Create_Settings.cs</DependentUpon>
-    </Compile>
     <Compile Include="F_Cript.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -161,9 +155,6 @@
     <Compile Include="Settings.cs" />
     <EmbeddedResource Include="F_Alphabet.resx">
       <DependentUpon>F_Alphabet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="F_Create_Settings.resx">
-      <DependentUpon>F_Create_Settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="F_Cript.resx">
       <DependentUpon>F_Cript.cs</DependentUpon>
@@ -222,8 +213,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="DBSettings_log.ldf">
-      <DependentUpon>DBSettings.mdf</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>DBSettings.mdf</DependentUpon>
     </Content>
     <Content Include="Resources\back.png" />
     <None Include="Resources\Enigma.jpg" />

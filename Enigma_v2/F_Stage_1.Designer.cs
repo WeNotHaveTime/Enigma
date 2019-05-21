@@ -162,12 +162,6 @@
             // 
             // T_Alphabet
             // 
-            this.T_Alphabet.AutoCompleteCustomSource.AddRange(new string[] {
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-            "АБВГҐДЕЁЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЪЫЬЮЯ",
-            "0123456789",
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ!.,-?0123456789 АБВГҐДЕЁЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЪЫЬЮЯ",
-            "АБВГДЕЄЖЗИІЇЙКЛМНОПРСТУФХЦЧШЩЬЮЯ"});
             this.T_Alphabet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.T_Alphabet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.T_Alphabet.BackColor = System.Drawing.Color.DarkGray;
