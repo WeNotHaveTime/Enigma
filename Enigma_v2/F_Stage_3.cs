@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Enigma
@@ -83,17 +78,17 @@ namespace Enigma
         }
         private void T_New_Rotor_TextChanged(object sender, EventArgs e)
         {
-                L_Alpha_Rotor.Text = alphabet;
+            L_Alpha_Rotor.Text = alphabet;
 
-                string tx = T_New_Rotor.Text;
-                for (int i = 0; i < tx.Length; i++)
-                {
-                    if (L_Alpha_Rotor.Text.Contains(tx[i])) L_Alpha_Rotor.Text = L_Alpha_Rotor.Text.Remove(L_Alpha_Rotor.Text.IndexOf(tx[i]), 1);
-                    else T_New_Rotor.Text = tx.Remove(tx.IndexOf(tx[i]), 1);
-                }  
+            string tx = T_New_Rotor.Text;
+            for (int i = 0; i < tx.Length; i++)
+            {
+                if (L_Alpha_Rotor.Text.Contains(tx[i])) L_Alpha_Rotor.Text = L_Alpha_Rotor.Text.Remove(L_Alpha_Rotor.Text.IndexOf(tx[i]), 1);
+                else T_New_Rotor.Text = tx.Remove(tx.IndexOf(tx[i]), 1);
+            }
 
-                T_New_Rotor.SelectionStart = T_New_Rotor.Text.Length;
-                T.SetToolTip(L_Alpha_Rotor, L_Alpha_Rotor.Text);
+            T_New_Rotor.SelectionStart = T_New_Rotor.Text.Length;
+            T.SetToolTip(L_Alpha_Rotor, L_Alpha_Rotor.Text);
         }
 
         private void Generate_Rotors(string alphabet, int number, ref List<string> Rotors, ref List<int> Positions)

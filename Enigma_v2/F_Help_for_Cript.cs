@@ -1,8 +1,8 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Linq;
-using System.Diagnostics;
 
 namespace Enigma
 {
@@ -42,7 +42,7 @@ namespace Enigma
             MessageBox.Show("Програму було розроблено Шафаренком Богданом, 2019", "GodGive");
         }
 
-       
+
         private void F_Help_for_Cript_Load(object sender, EventArgs e)
         {
             Opacity = 0;

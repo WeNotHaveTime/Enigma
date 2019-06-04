@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Enigma
@@ -60,47 +54,47 @@ namespace Enigma
         private void B_Rand_Reflector_Click(object sender, EventArgs e)
         {
             string Generate()
-        {
-            int c = alphabet.Length;
-            Random random = new Random();
-
-            string rotor = "";
-            for (int i = 0; i < c; i++)
             {
-                char j = alphabet[random.Next(0, alphabet.Length)];
-                while (rotor.Contains(j))
+                int c = alphabet.Length;
+                Random random = new Random();
+
+                string rotor = "";
+                for (int i = 0; i < c; i++)
                 {
-                    j = alphabet[random.Next(0, alphabet.Length)];
+                    char j = alphabet[random.Next(0, alphabet.Length)];
+                    while (rotor.Contains(j))
+                    {
+                        j = alphabet[random.Next(0, alphabet.Length)];
+                    }
+                    rotor += j;
                 }
-                rotor += j;
-            }
-            return rotor;
-        } // Генерація випадкових роторів/рефлекторів
+                return rotor;
+            } // Генерація випадкових роторів/рефлекторів
             string reflect = Generate(); // Генерування
             T_Reflector.Text = reflect;
         }
         private void T_Reflector_TextChanged(object sender, EventArgs e)
         {
             void TextBoxEntry(TextBox TB, Label L_Alpha)
-        {
-            L_Alpha.Text = alphabet;
-
-            string tx = TB.Text;
-            for (int i = 0; i < tx.Length; i++)
             {
-                if (L_Alpha.Text.Contains(tx[i])) L_Alpha.Text = L_Alpha.Text.Remove(L_Alpha.Text.IndexOf(tx[i]), 1);
-                else TB.Text = tx.Remove(tx.IndexOf(tx[i]), 1);
-            }
+                L_Alpha.Text = alphabet;
 
-            TB.SelectionStart = TB.Text.Length;
-            T.SetToolTip(L_Alph_Reflect, L_Alph_Reflect.Text);
-        }  // Загальна ф-ція заповнення полів відповідно до алфавіту
+                string tx = TB.Text;
+                for (int i = 0; i < tx.Length; i++)
+                {
+                    if (L_Alpha.Text.Contains(tx[i])) L_Alpha.Text = L_Alpha.Text.Remove(L_Alpha.Text.IndexOf(tx[i]), 1);
+                    else TB.Text = tx.Remove(tx.IndexOf(tx[i]), 1);
+                }
+
+                TB.SelectionStart = TB.Text.Length;
+                T.SetToolTip(L_Alph_Reflect, L_Alph_Reflect.Text);
+            }  // Загальна ф-ція заповнення полів відповідно до алфавіту
             TextBoxEntry(T_Reflector, L_Alph_Reflect);
         }
 
         private void B_Next_Click(object sender, EventArgs e)
         {
-            if (T_Reflector.Text.Length != 0 )
+            if (T_Reflector.Text.Length != 0)
             {
                 if (alphabet.Length == T_Reflector.Text.Length)
                 {

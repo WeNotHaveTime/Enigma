@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Data.SqlClient;
 
 namespace Enigma
 {
@@ -121,7 +120,7 @@ namespace Enigma
 
         private void B_Save_Click(object sender, EventArgs e)
         {
-            
+
             List<string> Plugboard = new List<string>();
             for (int i = 0; i < dataGridView2.RowCount; i++)
             {

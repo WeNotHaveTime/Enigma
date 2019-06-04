@@ -53,7 +53,7 @@
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(57, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(129, 42);
+            this.label1.Size = new System.Drawing.Size(164, 54);
             this.label1.TabIndex = 5;
             this.label1.Text = "Enigma";
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
@@ -63,7 +63,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(17, 59);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(69, 25);
+            this.label2.Size = new System.Drawing.Size(87, 32);
             this.label2.TabIndex = 11;
             this.label2.Text = "Текст:";
             // 
@@ -72,7 +72,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(17, 339);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 25);
+            this.label3.Size = new System.Drawing.Size(89, 32);
             this.label3.TabIndex = 11;
             this.label3.Text = "Шифр:";
             // 
@@ -83,7 +83,7 @@
             this.B_Settings.FlatAppearance.BorderSize = 0;
             this.B_Settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.B_Settings.ForeColor = System.Drawing.Color.White;
-            this.B_Settings.Location = new System.Drawing.Point(620, 0);
+            this.B_Settings.Location = new System.Drawing.Point(502, 0);
             this.B_Settings.Margin = new System.Windows.Forms.Padding(0);
             this.B_Settings.Name = "B_Settings";
             this.B_Settings.Size = new System.Drawing.Size(168, 47);
@@ -99,7 +99,7 @@
             this.B_Cript.FlatAppearance.BorderSize = 0;
             this.B_Cript.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.B_Cript.ForeColor = System.Drawing.Color.White;
-            this.B_Cript.Location = new System.Drawing.Point(486, 0);
+            this.B_Cript.Location = new System.Drawing.Point(368, 0);
             this.B_Cript.Margin = new System.Windows.Forms.Padding(0);
             this.B_Cript.Name = "B_Cript";
             this.B_Cript.Size = new System.Drawing.Size(134, 47);
@@ -115,7 +115,7 @@
             this.CaptureModul.Dock = System.Windows.Forms.DockStyle.Top;
             this.CaptureModul.Location = new System.Drawing.Point(0, 0);
             this.CaptureModul.Name = "CaptureModul";
-            this.CaptureModul.Size = new System.Drawing.Size(840, 51);
+            this.CaptureModul.Size = new System.Drawing.Size(722, 51);
             this.CaptureModul.TabIndex = 14;
             this.CaptureModul.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
             // 
@@ -143,7 +143,7 @@
             this.B_Exit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.B_Exit.FlatAppearance.BorderSize = 0;
             this.B_Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.B_Exit.Location = new System.Drawing.Point(788, 0);
+            this.B_Exit.Location = new System.Drawing.Point(670, 0);
             this.B_Exit.Margin = new System.Windows.Forms.Padding(0);
             this.B_Exit.Name = "B_Exit";
             this.B_Exit.Size = new System.Drawing.Size(51, 47);
@@ -163,9 +163,9 @@
             this.T_Input.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.T_Input.DetectUrls = false;
             this.T_Input.ForeColor = System.Drawing.Color.White;
-            this.T_Input.Location = new System.Drawing.Point(98, 59);
+            this.T_Input.Location = new System.Drawing.Point(110, 62);
             this.T_Input.Name = "T_Input";
-            this.T_Input.Size = new System.Drawing.Size(730, 272);
+            this.T_Input.Size = new System.Drawing.Size(590, 245);
             this.T_Input.TabIndex = 1000;
             this.T_Input.Text = "";
             // 
@@ -176,19 +176,19 @@
             this.T_Cript.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.T_Cript.DetectUrls = false;
             this.T_Cript.ForeColor = System.Drawing.Color.White;
-            this.T_Cript.Location = new System.Drawing.Point(98, 339);
+            this.T_Cript.Location = new System.Drawing.Point(110, 337);
             this.T_Cript.Name = "T_Cript";
             this.T_Cript.ReadOnly = true;
-            this.T_Cript.Size = new System.Drawing.Size(730, 110);
+            this.T_Cript.Size = new System.Drawing.Size(590, 110);
             this.T_Cript.TabIndex = 1000;
             this.T_Cript.Text = "";
             // 
             // F_Cript
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(840, 472);
+            this.ClientSize = new System.Drawing.Size(722, 472);
             this.ControlBox = false;
             this.Controls.Add(this.T_Cript);
             this.Controls.Add(this.T_Input);

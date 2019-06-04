@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Enigma
@@ -11,29 +8,28 @@ namespace Enigma
     public static class DBComunicate
     {
         static private SqlDataReader sqlReader = null;
-        static private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
+        static private string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|DBSettings.mdf;"; // адреса БД
 
         private static void My_ExecuteNonQuery(SqlCommand command)
         {
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             command.Connection = conn;
             command.ExecuteNonQuery();
             conn.Close();
         } //Виконання команди
-        static public void Select_toTable(ref DataGridView dataGridView1)
+        static public async void Select_toTable(this DataGridView DG)
         {
-            dataGridView1.Rows.Clear();
+
             SqlConnection conn = new SqlConnection(connectionString);
             conn.Open();
             SqlCommand info = new SqlCommand("SELECT Name FROM [Main]", conn);
             try
             {
-                sqlReader =  info.ExecuteReader();
-                while ( sqlReader.Read())
+                sqlReader = await info.ExecuteReaderAsync();
+                while (await sqlReader.ReadAsync())
                 {
-                    dataGridView1.Rows.Add(sqlReader[0].ToString());
+                    DG.Rows.Add(sqlReader[0].ToString());
                 }
             }
             catch (Exception ex)
@@ -100,7 +96,7 @@ namespace Enigma
         }
         static public void Insert(string name, string alphabet, bool sensitivity, string reflector, List<string> Rotors, List<int> Positions, List<string> Plugboard)
         {
-            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (N'" + name + "',N'" + alphabet + "', '"+ sensitivity.ToString() + "',N'" + reflector + "')");
+            SqlCommand addM = new SqlCommand("INSERT INTO [Main] ([Name], [Alphabet], [Sensitivity], [Reflector]) VALUES (N'" + name + "',N'" + alphabet + "', '" + sensitivity.ToString() + "',N'" + reflector + "')");
             My_ExecuteNonQuery(addM);
 
             if (Rotors.Count != 0)
@@ -130,7 +126,7 @@ namespace Enigma
         } // Додавання елементу
         static public void Remove(string Name)
         {
-            SqlCommand rem = new SqlCommand("DELETE FROM [Main] WHERE Name = '" + Name + "'");
+            SqlCommand rem = new SqlCommand("DELETE FROM [Main] WHERE Name = N'" + Name + "'");
             My_ExecuteNonQuery(rem);
         } //видалення елемента
 

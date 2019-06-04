@@ -137,7 +137,7 @@
             this.label6.Location = new System.Drawing.Point(191, 5);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(347, 42);
+            this.label6.Size = new System.Drawing.Size(436, 54);
             this.label6.TabIndex = 272;
             this.label6.Text = "Комутаційна панель";
             this.label6.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
@@ -151,7 +151,7 @@
             this.label3.Location = new System.Drawing.Point(57, 5);
             this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(141, 42);
+            this.label3.Size = new System.Drawing.Size(177, 54);
             this.label3.TabIndex = 132;
             this.label3.Text = "Етап 4:";
             this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
@@ -193,6 +193,7 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowHeadersWidth = 51;
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Gray;
             this.dataGridView2.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView2.RowTemplate.Height = 24;
@@ -208,6 +209,7 @@
             // Column4
             // 
             this.Column4.HeaderText = "Пара";
+            this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
             this.Column4.ReadOnly = true;
             // 
@@ -236,7 +238,7 @@
             this.T_K2.Location = new System.Drawing.Point(204, 201);
             this.T_K2.MaxLength = 1;
             this.T_K2.Name = "T_K2";
-            this.T_K2.Size = new System.Drawing.Size(44, 33);
+            this.T_K2.Size = new System.Drawing.Size(44, 39);
             this.T_K2.TabIndex = 269;
             this.T_K2.TextChanged += new System.EventHandler(this.T_K2_TextChanged);
             // 
@@ -247,7 +249,7 @@
             this.T_K1.Location = new System.Drawing.Point(154, 201);
             this.T_K1.MaxLength = 1;
             this.T_K1.Name = "T_K1";
-            this.T_K1.Size = new System.Drawing.Size(44, 33);
+            this.T_K1.Size = new System.Drawing.Size(44, 39);
             this.T_K1.TabIndex = 268;
             this.T_K1.TextChanged += new System.EventHandler(this.T_K1_TextChanged);
             // 
@@ -259,7 +261,7 @@
             this.label5.Location = new System.Drawing.Point(11, 65);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(519, 75);
+            this.label5.Size = new System.Drawing.Size(652, 96);
             this.label5.TabIndex = 270;
             this.label5.Text = "Комутаційна панель використовується як додатковий\r\nспосіб задання пари заміни. За" +
     "міна в ході роботи\r\nпрограми буде використовуватись двічі.";
@@ -272,7 +274,7 @@
             this.label2.Location = new System.Drawing.Point(17, 204);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(132, 25);
+            this.label2.Size = new System.Drawing.Size(167, 32);
             this.label2.TabIndex = 271;
             this.label2.Text = "Введіть пару:";
             // 
@@ -321,9 +323,10 @@
             0,
             0});
             this.Num_Plugboard.Name = "Num_Plugboard";
-            this.Num_Plugboard.Size = new System.Drawing.Size(134, 33);
+            this.Num_Plugboard.Size = new System.Drawing.Size(134, 39);
             this.Num_Plugboard.TabIndex = 279;
             this.Num_Plugboard.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.toolTip1.SetToolTip(this.Num_Plugboard, "Згенерувати дану кількість комутаційних пар");
             this.Num_Plugboard.Value = new decimal(new int[] {
             1,
             0,

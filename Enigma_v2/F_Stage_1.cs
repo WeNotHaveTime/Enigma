@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Enigma
@@ -41,43 +34,11 @@ namespace Enigma
             T.Start();
 
         }
-        public void AutoComplete()
-        {
-            SqlDataReader sqlReader = null;  // ініціалізація 
-
-            var alphabet = new AutoCompleteStringCollection();
-            string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\DBSettings.mdf;Integrated Security=True"; // адреса БД
-            SqlConnection conn = new SqlConnection(connectionString);
-            conn.Open();
-
-            SqlCommand M = new SqlCommand("SELECT Alphabet FROM [Main]", conn);
-            try
-            {
-                sqlReader = M.ExecuteReader();
-                while (sqlReader.Read())
-                {
-                    alphabet.Add(sqlReader[0].ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                if (sqlReader != null)
-                    sqlReader.Close();
-                T_Alphabet.AutoCompleteCustomSource = alphabet;
-            }
-
-        }
-
         string name;
         public F_Stage_1(string name)
         {
             InitializeComponent();
             this.name = name;
-            AutoComplete();
         }
 
         private void F_Stage1_Load(object sender, EventArgs e)
@@ -97,9 +58,9 @@ namespace Enigma
             if (T_Alphabet.Text.Length == 0)
             {
                 MessageBox.Show("Будь ласка введіть дані!");
-                return; 
+                return;
             }
-            
+
             if (T_Alphabet.Text.Length % 2 != 0)
             {
                 MessageBox.Show("Алфавіт повинен містити парну кількість символів!");
@@ -110,7 +71,7 @@ namespace Enigma
 
             if (!CH_Sensitivity.Checked) tx = tx.ToUpper();
 
-            for(int i = 0; i < tx.Length; i++)
+            for (int i = 0; i < tx.Length; i++)
             {
                 char ch = tx[i];
                 string txx = tx.Substring(i + 1);
@@ -128,6 +89,6 @@ namespace Enigma
             F_Stage_2 F = new F_Stage_2(name, tx, CH_Sensitivity.Checked);
             F.Show();
             Hide();
-        }               
+        }
     }
 }

@@ -40,8 +40,6 @@
             this.B_Import = new System.Windows.Forms.Button();
             this.B_Instruction = new System.Windows.Forms.Button();
             this.B_Exit = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.T_Name = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
@@ -52,8 +50,10 @@
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.elipseControl1 = new Enigma.ElipseControl();
+            this.dataGV = new System.Windows.Forms.DataGridView();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CaptureModul.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGV)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -65,7 +65,7 @@
             this.label1.Location = new System.Drawing.Point(56, 2);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(378, 42);
+            this.label1.Size = new System.Drawing.Size(472, 54);
             this.label1.TabIndex = 15;
             this.label1.Text = "Менеджер налаштувань";
             this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.CapturModul_MouseDown);
@@ -151,61 +151,6 @@
             this.B_Exit.UseVisualStyleBackColor = false;
             this.B_Exit.Click += new System.EventHandler(this.B_Exit_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe Script", 10F);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
-            this.dataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe Script", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column2});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe Script", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridView1.Location = new System.Drawing.Point(13, 59);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe Script", 10F);
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
-            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.ShowCellErrors = false;
-            this.dataGridView1.ShowCellToolTips = false;
-            this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.ShowRowErrors = false;
-            this.dataGridView1.Size = new System.Drawing.Size(696, 210);
-            this.dataGridView1.TabIndex = 245;
-            this.dataGridView1.TabStop = false;
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 31.25968F;
-            this.Column2.HeaderText = "Назва налаштувань";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
             // T_Name
             // 
             this.T_Name.BackColor = System.Drawing.Color.DarkGray;
@@ -215,7 +160,7 @@
             this.T_Name.Margin = new System.Windows.Forms.Padding(6);
             this.T_Name.MaxLength = 50;
             this.T_Name.Name = "T_Name";
-            this.T_Name.Size = new System.Drawing.Size(329, 33);
+            this.T_Name.Size = new System.Drawing.Size(329, 39);
             this.T_Name.TabIndex = 246;
             // 
             // label7
@@ -226,7 +171,7 @@
             this.label7.Location = new System.Drawing.Point(11, 295);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(78, 30);
+            this.label7.Size = new System.Drawing.Size(100, 38);
             this.label7.TabIndex = 264;
             this.label7.Text = "Назва:";
             // 
@@ -322,19 +267,76 @@
             this.elipseControl1.CornerRadius = 50;
             this.elipseControl1.TargetControl = this;
             // 
+            // dataGV
+            // 
+            this.dataGV.AllowUserToAddRows = false;
+            this.dataGV.AllowUserToDeleteRows = false;
+            this.dataGV.AllowUserToResizeColumns = false;
+            this.dataGV.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe Script", 10F);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            this.dataGV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGV.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe Script", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column2});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe Script", 12F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGV.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGV.Location = new System.Drawing.Point(13, 59);
+            this.dataGV.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGV.MultiSelect = false;
+            this.dataGV.Name = "dataGV";
+            this.dataGV.ReadOnly = true;
+            this.dataGV.RowHeadersVisible = false;
+            this.dataGV.RowHeadersWidth = 51;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe Script", 10F);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
+            this.dataGV.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGV.RowTemplate.Height = 24;
+            this.dataGV.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGV.ShowCellErrors = false;
+            this.dataGV.ShowCellToolTips = false;
+            this.dataGV.ShowEditingIcon = false;
+            this.dataGV.ShowRowErrors = false;
+            this.dataGV.Size = new System.Drawing.Size(696, 210);
+            this.dataGV.TabIndex = 265;
+            this.dataGV.TabStop = false;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 31.25968F;
+            this.Column2.HeaderText = "Назва налаштувань";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
             // F_SettingsManager
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 32F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(722, 363);
+            this.Controls.Add(this.dataGV);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.B_Choose);
             this.Controls.Add(this.B_Combinations);
             this.Controls.Add(this.B_Rem);
             this.Controls.Add(this.B_Add);
             this.Controls.Add(this.T_Name);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.CaptureModul);
             this.Font = new System.Drawing.Font("Segoe Script", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -346,7 +348,7 @@
             this.Load += new System.EventHandler(this.F_SettingsManager_Load);
             this.CaptureModul.ResumeLayout(false);
             this.CaptureModul.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGV)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,7 +365,6 @@
         private System.Windows.Forms.Button B_Add;
         private System.Windows.Forms.Button B_Rem;
         private System.Windows.Forms.Button B_Choose;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button B_Export;
@@ -371,6 +372,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         private System.Windows.Forms.Button B_Combinations;
-        public System.Windows.Forms.DataGridView dataGridView1;
+        public System.Windows.Forms.DataGridView dataGV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
     }
 }

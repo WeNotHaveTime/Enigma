@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using MaterialSkin.Controls;
-using MaterialSkin;
-using System.IO;
-using System.Linq;
 
 namespace Enigma
 {
@@ -46,6 +41,7 @@ namespace Enigma
             T.Interval = 1;
             T.Start();
         }
+
         private void Visual_Load_Form()
         {
             Opacity = 0;
@@ -83,11 +79,10 @@ namespace Enigma
             }
             else
             {
-
                 string tx = T_Input.Text;
                 Cript C = new Cript(tx, Settings);
 
-                T_Cript.Text =  C.Output;
+                T_Cript.Text = C.Output;
                 System.Windows.Forms.Clipboard.SetDataObject(T_Cript.Text);
             }
         }

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.IO;
 
 namespace Enigma
 {
@@ -49,9 +47,9 @@ namespace Enigma
         private bool NewName()
         {
             bool new_name = true;
-            for (int i = 0; i < dataGridView1.RowCount; i++)
+            for (int i = 0; i < dataGV.RowCount; i++)
             {
-                if (dataGridView1.Rows[i].Cells[0].Value.ToString() == T_Name.Text)
+                if (dataGV.Rows[i].Cells[0].Value.ToString() == T_Name.Text)
                 {
                     new_name = false;
                 }
@@ -78,32 +76,32 @@ namespace Enigma
         }
         private void B_Rem_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount != 0)
+            if (dataGV.RowCount != 0)
             {
-                DBComunicate.Remove(dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
-                DBComunicate.Select_toTable(ref dataGridView1);
+                DBComunicate.Remove(dataGV.SelectedRows[0].Cells[0].Value.ToString());
+                dataGV.Select_toTable();
             }
             else MessageBox.Show("Таблиця пуста!");
         }
         private void B_Choose_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount != 0)
+            if (dataGV.RowCount != 0)
             {
-                string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                string name = dataGV.SelectedRows[0].Cells[0].Value.ToString();
                 DBComunicate.DB_to_Settings(name, ref setting);
                 var F = Application.OpenForms.OfType<F_Cript>().Single();
                 F.Settings = setting;
                 F.Show();
                 Hide();
-                
+
             }
-            else MessageBox.Show("Таблиця пуста!"); 
+            else MessageBox.Show("Таблиця пуста!");
         }
-        
+
         private void F_SettingsManager_Load(object sender, EventArgs e)
         {
             Visual_Load_Form();
-            DBComunicate.Select_toTable(ref dataGridView1);
+            dataGV.Select_toTable();
         }
         private void B_Exit_Click(object sender, EventArgs e)
         {
@@ -114,9 +112,9 @@ namespace Enigma
 
         private void B_Export_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount != 0)
+            if (dataGV.RowCount != 0)
             {
-                string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                string name = dataGV.SelectedRows[0].Cells[0].Value.ToString();
                 DBComunicate.DB_to_Settings(name, ref setting);
 
                 saveFileDialog1.FileName = name;
@@ -193,16 +191,16 @@ namespace Enigma
                 sr.Close();
                 try
                 {
-                    for (i = 0; i < dataGridView1.RowCount; i++)
+                    for (i = 0; i < dataGV.RowCount; i++)
                     {
-                        if(dataGridView1.Rows[i].Cells[0].Value.ToString() == name)
+                        if (dataGV.Rows[i].Cells[0].Value.ToString() == name)
                         {
-                            if(MessageBox.Show("В базі даних вже існують налаштування під даною назвою, замінити?", "Імпорт налаштування під назвою: "+ name,
+                            if (MessageBox.Show("В базі даних вже існують налаштування під даною назвою, замінити?", "Імпорт налаштування під назвою: " + name,
                                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 DBComunicate.Remove(name);
                                 DBComunicate.Insert(name, alphabet, sensitivity, reflector, Rotors, Positions, Plugboard);
-                                DBComunicate.Select_toTable(ref dataGridView1);
+                                dataGV.Select_toTable();
                             }
                             return;
                         }
@@ -215,16 +213,16 @@ namespace Enigma
                 }
                 finally
                 {
-                    DBComunicate.Select_toTable(ref dataGridView1);
+                    dataGV.Select_toTable();
                 }
             }
         }
 
         private void B_Combinations_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.RowCount != 0)
+            if (dataGV.RowCount != 0)
             {
-                string name = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
+                string name = dataGV.SelectedRows[0].Cells[0].Value.ToString();
                 DBComunicate.DB_to_Settings(name, ref setting);
 
                 MessageBox.Show(

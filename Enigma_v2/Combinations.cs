@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Enigma
 {
     static class Combinations
@@ -34,6 +29,6 @@ namespace Enigma
 
             return all_rotors * plugboard; // Загальна кількість комбінацій потрібних для перебору, щоб взламати ключ
         }
-       
+
     }
 }

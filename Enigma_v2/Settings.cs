@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Enigma
 {
     public class Settings
     {
-        public Settings(string Name, string Alphabet, bool Sensitivity,List<string> Plugboard, List<string> Rotors, List<int> Positions, string Reflector)
+        public Settings(string Name, string Alphabet, bool Sensitivity, List<string> Plugboard, List<string> Rotors, List<int> Positions, string Reflector)
         {
             this.Name = Name;
             this.Alphabet = Alphabet;
